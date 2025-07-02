@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap');
+
+#enterName{
+    display: none;
+    width: 100%;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    flex-direction: column;
+    height: 100px;
+}
+
+#clock{
+    display: fixed;
+    font-family: Roboto;
+    font-style: normal;
+    margin-left: 12px;
+    font-weight: 800;
+    font-size: 112px;
+    line-height: 112px;
+    color: #FFFFFF;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.85);
+    animation: leftSlide 0.4s forwards;
+    height: 100px;
+}
+
+#greeting{
+    z-index: 3;
+    display: fixed;
+    position: absolute;
+}
+
+#greetingname{
+    display: flex;
+    margin-left: 17px;
+    margin-top: 17px;
+    margin-bottom: 0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    height: 120px;
+    width: 100%;
+    line-height: 56px;
+    letter-spacing: 0.01em;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.71);
+    animation: leftSlide 0.6s forwards;
+}
+
+.container{
+    display: flex;
+    width: 45%;
+    border-radius: 5px;
+    border-color: black;
+}
+
+#input_image{
+    display: flex;
+    width: 25%;
+}
+
+#topbuttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input[type="file"]{
+    font-size: .9em;
+    display: flex;
+    margin-bottom: 3px;
+}
+
+#changeImage{ 
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: 0;
+}
+
+#windowShape{
+    display: flex;
+    cursor: pointer;
+    margin-top: 20%;
+    color: white;
+    width: auto;
+    background-color: rgba(0, 0, 0, 0.205);
+    backdrop-filter: blur(100px);
+    border-radius: 15px;
+    flex-direction: column;
+    z-index: 100;
+}
+
+#mySchedule{
+    padding-left: 15px;
+    font-family: Roboto;
+    font-size: 1.75em;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.71);
+    margin-bottom: 7px;
+    margin-top: 6px;
+}
+
+#funLinks{
+    padding-left: 15px;
+    font-family: Roboto;
+    font-size: 1.75em;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.71);
+    margin-bottom: 7px;
+    margin-top: 6px;
+}
+
+.close{
+    font-size: 24px;
+    float: right;
+    font-weight: bold;
+    margin-right: 15px;
+    margin-top: 6px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.71);
+}
+
+.close:hover{
+    color: rgb(88, 88, 88);
+}
+
+#userImage{
+    object-fit: contain;
+    height: 600px;
+    margin-right: 6px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    border-radius: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.panel{
+    display: flex;
+    opacity: 60%;
+    margin-top: 300px;
+    cursor: pointer;
+}
+
+#scheduleWindow{
+    display: none;
+    z-index: 5;
+    outline: black;
+    animation: leftSlide 0.5s forwards;
+}
+
+#schedule{
+    opacity: 30%;
+    position: fixed;
+    left: 0%;
+    bottom: 45%;
+    animation: bob 1.5s infinite;
+}
+
+.panel:hover{
+    opacity: 60% !important;
+}
+
+#otherPanel{
+    position: fixed;
+    opacity: 30%;
+    left: calc(100% - 60px);
+    bottom: 45%;
+    animation: bobreverse 1.5s infinite;
+}
+
+.timeandinfo{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+button{
+    position: flex;
+    width: 82px;
+    height: 79.75px;
+    background: rgba(231, 197, 21, 0.83);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 18px;
+    margin-left: 15px;
+    margin-right: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+}
+
+.text{
+    margin-top: 7px;
+}
+
+button:hover{
+    background: rgba(207, 174, 8, 0.88);
+    transform: translateY(-4px); 
+}
+
+.box{
+    transition-duration: 0.1s;
+    font-size: 1.2em;
+}
+
+.box:hover{
+    transform: scale(1.21);
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 1);
+}
+
+button:active{
+    background: rgba(145, 121, 3, 0.88);
+}
+
+.winter button{
+    background: rgba(134, 209, 228, 0.88) !important;
+}
+
+.winter button:hover{
+    background: #4baac2e0 !important;
+}
+
+.winter button:active{
+    background: #1d9bbbe0 !important;
+}
+
+#buttons{
+    margin-top: 40vh;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: absolute;
+    
+}
+
+#middlePane{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.half{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.text{
+    color: #ffffff;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.85);
+    text-align: center;
+    font-size: .9em;
+    font-family: Roboto;
+}
+
+#nameSubmit{
+    font-size: 4em;
+    background-color: #00000000;
+    text-align: center;
+    border-color: #00000000;
+    font-weight: bold;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.658);
+    font-family: Roboto;
+    color: #ffffff;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.137); 
+}
+
+#nameSubmit:focus{
+    background-color: 0;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.562);
+    outline: none;
+}
+
+#name{
+    text-align: center;
+    margin-top: 40%;
+    font-family: Roboto;
+    font-size: 3.5em;
+    color: #ffffff;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.71);
+    font-weight: bold;
+    float: center;
+}
+
+#creator{
+    color: white;
+    position: fixed;
+    font-family: Roboto;
+    bottom: -25px;
+    right: 5px;
+    font-size: 12px;
+    font-weight: 100;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 1);
+}
+
+body.normal{
+    animation: unblur .5s forwards !important;
+}
+
+body{
+    backdrop-filter: blur(20px);
+}
+
+#everything{
+    display: none;
+    position: relative;
+}
+
+html, body {margin: 0; height: 100%; overflow: hidden}
+
+@keyframes leftSlide{
+    from { transform: translatex(-1000px); animation-timing-function: ease-out;}
+    to { transform: translatex(0); animation-timing-function: ease-in;}
+}
+
+@keyframes rightSlide{
+    from { transform: translatex(0); animation-timing-function: ease-out;}
+    to { transform: translatex(-1000px); animation-timing-function: ease-in;}
+}
+
+@keyframes unblur{
+    from { backdrop-filter: blur(20px); animation-timing-function: ease-out;}
+    to { backdrop-filter: blur(3px); animation-timing-function: ease-in;}
+}
+
+@keyframes bob {
+    0% { margin-left: 5px; animation-timing-function: ease-out;}
+    50% { margin-left: 7px; animation-timing-function: ease-in;}
+    100% { margin-left: 5px; animation-timing-function: ease-out;}
+}
+
+@keyframes bobreverse {
+    0% { margin-left: 7px; animation-timing-function: ease-in;}
+    50% { margin-left: 5px; animation-timing-function: ease-out;}
+    100% { margin-left: 7px; animation-timing-function: ease-in;}
+}
+
+
+@media only screen and (max-width: 1200px){
+    .panel {
+        display: none !important;
+    }
+    #windowShape{
+        display: none;
+    }
+    .container{
+        display: none;
+    }
+    #greetingname{
+        transition-duration: 0.2s;
+        font-size: 3.3em;
+    }
+}
+
+@media only screen and (max-width: 1000px){
+    #enterName{
+        margin-top: 20%;
+    }
+}
+
+@media only screen and (max-width: 720px){
+    #enterName{
+        margin-top: 30%;
+    }
+    #name{
+        font-size: 2.5em;
+    }
+    #nameSubmit{
+        width: 200px;
+        font-size: 1.5em;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.658);
+    }
+    
+}
+
+@media only screen and (max-width: 500px){
+    #greetingname{
+        margin-top: 0px;
+        transition-duration: 0.2s;
+        font-size: 3em;
+    }
+    #clock{
+        transition-duration: 0.2s;
+        font-size: 7em;
+    }
+}
+
+@media only screen and (max-width: 375px){
+    #greetingname{
+        margin-top: 0px;
+        transition-duration: 0.2s;
+        font-size: 2em;
+    }
+    #clock{
+        transition-duration: 0.2s;
+        font-size: 5em;
+    }
+}
