@@ -11,8 +11,7 @@ backgrounds = [
     'url("photo8.jpg")',
 ]
 
-// `url("photo${n}.jpg")`
-
+// Randomly pick and set a background image
 function randomizeBackground() {
     selectedImage = backgrounds[Math.floor(Math.random() * backgrounds.length)];
     document.body.style.background = selectedImage;
@@ -23,25 +22,52 @@ function randomizeBackground() {
     }
 }
 
-function loadName(){
-    if (localStorage.name) greeting();
-    else {
+// Hide logos, sidebar, and buttons before name is entered
+function hideUIBeforeName() {
+    const logos = document.getElementById("logos");
+    const sidebar = document.getElementById("sidebar");
+    const buttons = document.getElementById("buttons");
+    if (logos) logos.style.display = "none";
+    if (sidebar) sidebar.style.display = "none";
+    if (buttons) buttons.style.display = "none";
+}
+
+// Show logos, sidebar, and buttons after name is entered
+function showUIAfterName() {
+    const logos = document.getElementById("logos");
+    const sidebar = document.getElementById("sidebar");
+    const buttons = document.getElementById("buttons");
+    if (logos) logos.style.display = "block"; // or "flex" depending on your layout
+    if (sidebar) sidebar.style.display = "block";
+    if (buttons) buttons.style.display = "flex";
+}
+
+// Load name or ask for it if none saved
+function loadName() {
+    if (localStorage.name) {
+        greeting();
+    } else {
         getName();
+        hideUIBeforeName();
     }
 }
 
+// Get name from input, save, then greet
 function getName() {
     const input = document.getElementById("nameSubmit");
     const enterName = document.getElementById("enterName");
     enterName.style.display = "flex";
     input.addEventListener("keyup", (e) => {
         if (e.keyCode === 13) {
-            localStorage.name = input.value;
-            greeting();
+            localStorage.name = input.value.trim();
+            if(localStorage.name) {
+                greeting();
+            }
         }
     })
 }
 
+// Show clock and update greeting message according to time
 function showTime() {
     var date = new Date();
     var h = date.getHours();
@@ -52,40 +78,47 @@ function showTime() {
     m = (m < 10) ? "0" + m : m;
     s = (s < 10) ? "0" + s : s;
 
-    if (h > 3) {
+    // Fix greeting logic order:
+    if (h >= 21 || h <= 3) {
+        timeText = "Good Night";
+    } else if (h > 17) {
+        timeText = "Good Evening";
+    } else if (h > 12) {
+        timeText = "Good Afternoon";
+    } else {
         timeText = "Good Morning";
     }
-    if (h > 12) {
-        timeText = "Good Afternoon";
-    }
-    if (h > 17) {
-        timeText = "Good Evening";
-    }
-    if (h > 20){
-        timeText = "Good Night";
+
+    let num = date.getHours() % 12;
+    if (num === 0) {
+        num = 12;
     }
 
-    let num = h % 12;
-    if (num == 0) {
-        num = 1;
-    }
-
-    var time = (num) + ":" + m + ":" + s + " ";
+    var time = num + ":" + m + ":" + s + " ";
     document.getElementById("clock").innerText = time;
     setTimeout(showTime, 1000);
 }
 
+// Show greeting and reveal UI
 function greeting() {
     document.body.classList.add("normal");
+    const enterName = document.getElementById("enterName");
     enterName.style.display = "none";
+
     let everything = document.getElementById("everything");
-    everything.style.display = "flex";
-    document.getElementById("greetingname").textContent = timeText + ", " + localStorage.name;
-    setTimeout(greeting, 1000);
+    if (everything) everything.style.display = "flex";
+
+    showUIAfterName();
+
+    const greetingNameElem = document.getElementById("greetingname");
+    if (greetingNameElem) greetingNameElem.textContent = timeText + ", " + localStorage.name;
 }
 
+// Load user image from file input
 function getImage() {
     const schedule_input = document.querySelector("#input_image");
+
+    if(!schedule_input) return;
 
     schedule_input.addEventListener("change", function () {
         const reader = new FileReader();
@@ -97,32 +130,30 @@ function getImage() {
     });
 }
 
+// Load saved schedule image or default blank
 function loadSchedule() {
-    if (localStorage.schedule) document.querySelector("#userImage").src = localStorage.schedule;
-    else {
-        document.querySelector("#userImage").src = "scheduleBlank.png";
-    }
+    const userImage = document.querySelector("#userImage");
+    if (!userImage) return;
+
+    if (localStorage.schedule) userImage.src = localStorage.schedule;
+    else userImage.src = "scheduleBlank.png";
 }
 
+// Modal handling for schedule window
 function modal() {
-    // Get the modal
     let modal = document.getElementById("scheduleWindow");
     let image = document.getElementById("userImage");
-
-    // Get the button that opens the modal
     var btn = document.getElementById("schedule");
+    var span = modal ? modal.querySelector(".close") : null;
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    if (!modal || !btn || !span) return;
 
-    // When the user clicks on the button, open the modal
     btn.onclick = function () {
         modal.style.display = "flex";
         modal.style.animation = "leftSlide 0.5s forwards";
         btn.style.display = "none";
     }
 
-    // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
         modal.style.animation = "rightSlide 0.5s forwards";
         btn.style.display = "flex";
@@ -131,9 +162,8 @@ function modal() {
         }, 500);
     }
 
-    // When the user clicks anywhere inside of the modal, close it
     window.onclick = function (event) {
-        if (event.target == image) {
+        if (event.target === image) {
             modal.style.animation = "rightSlide 0.4s forwards";
             btn.style.display = "flex";
             setTimeout(() => {
@@ -143,49 +173,50 @@ function modal() {
     }
 }
 
+// Fun links modal (fixed, was incomplete)
 function funLinks() {
-    // Get the modal
-    let funLinks = document.getElementById("funLinksWindow");
-
-    // Get the button that opens the modal
+    let funLinksModal = document.getElementById("funLinksWindow");
     var btn = document.getElementById("otherPanel");
+    var span = funLinksModal ? funLinksModal.querySelector(".close") : null;
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    if (!funLinksModal || !btn || !span) return;
 
-    // When the user clicks on the button, open the modal
     btn.onclick = function () {
-        funLinks.style.display = "flex";
-        funLinks.style.animation = "leftSlide 0.5s forwards";
+        funLinksModal.style.display = "flex";
+        funLinksModal.style.animation = "leftSlide 0.5s forwards";
         btn.style.display = "none";
     }
 
-    // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
-        funLinks.style.animation = "rightSlide 0.5s forwards";
+        funLinksModal.style.animation = "rightSlide 0.5s forwards";
         btn.style.display = "flex";
         setTimeout(() => {
-            modal.style.display = "none";
+            funLinksModal.style.display = "none";
         }, 500);
     }
 
-    // When the user clicks anywhere inside of the modal, close it
     window.onclick = function (event) {
-        if (event.target == image) {
-            modal.style.animation = "rightSlide 0.4s forwards";
+        if (event.target === funLinksModal) {
+            funLinksModal.style.animation = "rightSlide 0.4s forwards";
             btn.style.display = "flex";
             setTimeout(() => {
-                modal.style.display = "none";
+                funLinksModal.style.display = "none";
             }, 400);
         }
     }
 }
 
+// On page load
 window.onload = function () {
+    if (!localStorage.name) {
+        hideUIBeforeName();
+    }
+
     randomizeBackground();
     showTime();
     getImage();
     loadSchedule();
     modal();
+    funLinks();
     loadName();
 }
