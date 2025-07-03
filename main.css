@@ -178,7 +178,7 @@ button{
     position: flex;
     width: 82px;
     height: 79.75px;
-    background: rgba(231, 197, 21, 0.83);
+    background: rgba(201, 50, 221, 0.787);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
     border-radius: 18px;
     margin-left: 15px;
@@ -194,7 +194,7 @@ button{
 }
 
 button:hover{
-    background: rgba(207, 174, 8, 0.88);
+    background: rgba(156, 32, 173, 0.787);
     transform: translateY(-4px); 
 }
 
@@ -210,29 +210,30 @@ button:hover{
 }
 
 button:active{
-    background: rgba(145, 121, 3, 0.88);
+    background: rgba(96, 15, 107, 0.787);
 }
 
 .winter button{
-    background: rgba(134, 209, 228, 0.88) !important;
+    background: rgba(157, 210, 224, 0.88) !important;
 }
 
 .winter button:hover{
-    background: #4baac2e0 !important;
+    background: #6c919ae0 !important;
 }
 
 .winter button:active{
-    background: #1d9bbbe0 !important;
+    background: #436a74e0 !important;
 }
 
-#buttons{
-    margin-top: 40vh;
+#buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
-    width: 100%;
     justify-content: center;
     flex-wrap: wrap;
-    position: absolute;
-    
+    width: 100%;
 }
 
 #middlePane{

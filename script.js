@@ -1,10 +1,10 @@
 let timeText = "";
 
 backgrounds = [
-    'url("photo1.jpg")',
-    'url("photo2.jpg")',
-    'url("photo3.jpg")',
-    'url("photo4.jpg")',
+    'url("photo1.jpeg")',
+    'url("photo2.jpeg")',
+    'url("photo3.jpeg")',
+    'url("photo4.jpeg")',
     'url("photo5.jpg")',
     'url("photo6.jpg")',
     'url("photo7.jpg")',
@@ -18,7 +18,7 @@ function randomizeBackground() {
     document.body.style.background = selectedImage;
     document.body.style.backgroundRepeat = "no-repeat";
     document.body.style.backgroundSize = "cover";
-    if (selectedImage == backgrounds[7]) {
+    if (selectedImage == backgrounds[6]) {
         document.getElementById("buttons").classList.add("winter");
     }
 }

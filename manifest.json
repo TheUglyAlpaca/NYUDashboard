@@ -1,8 +1,8 @@
 {
 "manifest_version": 3,
-"name": "Vanderbilt Dashboard",
+"name": "NYU Dashboard",
 "version": "1.0",
-"description": "A useful new-tab page for Vanderbilt undergraduate students.",
+"description": "A useful new-tab page for NYU students.",
 "chrome_url_overrides": {
     "newtab": "index.html"
     }
